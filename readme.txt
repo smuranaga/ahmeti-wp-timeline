@@ -27,7 +27,7 @@ Yazdığınız olayların içine her türlü çoklu ortam (resim,video,mp3 vb.) 
 1. `/wp-content/plugins/` klasörünün içerisine .zip dosyasından çıkan "ahmeti-wp-timeline" klasörüne atınız.
 1. Admin paneli "Eklentiler" menüsünden eklentiyi aktif ediniz.
 1. Eklentiyi aktif ettikten sonra editörün yanına [şurada görülen] (http://wordpress.org/plugins/ahmeti-wp-timeline/screenshots/) küçük bir buton çıkacaktır.
-1. Butona tıkladıktan sonra açılan pencereye Grup Listesinden hangi timeline (zaman çizelgesi) göstermek isterseniz "Grup_ID" sütunundaki rakamı girip "Ekle" butonuna basmanız yeterli olacaktır. 
+1. Butona tıkladıktan sonra açılan pencereye Grup Listesinden hangi timeline (zaman çizelgesi) göstermek isterseniz "Grup_ID" değerini girip "Ekle" butonuna basmanız yeterli olacaktır. 
 
 
 == Changelog ==

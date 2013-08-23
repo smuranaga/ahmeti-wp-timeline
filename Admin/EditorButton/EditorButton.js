@@ -39,8 +39,8 @@
 		// you should achieve this using AJAX instead of direct html code like this
 		var form = jQuery('<div id="mygallery-form"><table id="mygallery-table" class="form-table">\
 			<tr>\
-				<td><br /><label for="mygallery-columns">Timeline (Zaman Çizelgesi) Grup No</label></td>\
-				<!--<small>specify the number of columns.</small></td>-->\
+				<td><br /><label for="mygallery-columns">Timeline (Zaman Çizelgesi) Grup_ID</label></td>\
+				<small>Grup_ID değerine Admin Paneli -> Timeline -> Grup Listesinden ulaşabilirsiniz.</small></td>\
 			</tr>\
 			<tr>\
 				<td><input type="text" id="mygallery-groupid" size="10" name="groupid" value="" /><br />\

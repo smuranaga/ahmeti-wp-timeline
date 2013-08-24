@@ -2,7 +2,7 @@
 Contributors: ahmeti
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HUXL44BC8SRHQ
 Tags: wp timeline, timeline, zaman cizelgesi, ahmeti, zaman cizgisi
-Requires at least: 3.0
+Requires at least: 3.3
 Tested up to: 3.5.1
 Stable tag: 3.5.1
 License: GPLv2 or later

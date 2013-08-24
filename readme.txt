@@ -32,9 +32,11 @@ Yazdığınız olayların içine her türlü çoklu ortam (resim,video,mp3 vb.) 
 
 == Changelog ==
 
+= 1.1 =
+* Tüm sorgulara "$wpdb->prefix" eklendi.
+
 = 1.0 =
 * İlk versiyon.
-
 
 == Frequently Asked Questions ==
 

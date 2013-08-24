@@ -4,7 +4,7 @@
     Plugin URI: http://ahmeti.net/
     Description: Herhangi bir konu hakkında güzel bir timeline (zaman çizelgesi) oluşarabileceğiniz bir eklenti.
     Author: Ahmet Imamoglu
-    Version: 1.0
+    Version: 1.1
     Author URI: http://ahmeti.net/
 */
 

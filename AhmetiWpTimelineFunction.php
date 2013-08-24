@@ -111,8 +111,9 @@ function Ahmeti_Wp_Timeline_Admin()
 
 
 
-function AhmetiWpTimelineDateTitle($mysqlDateTime){
-    
+function AhmetiWpTimelineDateTitle($mysqlDateTime)
+{
+
     $explTime=explode(' ',$mysqlDateTime);
     // $explTime[0] // 2012-12-12
     // $explTime[1] // 00:00:00
@@ -121,23 +122,23 @@ function AhmetiWpTimelineDateTitle($mysqlDateTime){
     // $explDate[0] // Year
     // $explDate[1] // Month
     // $explDate[2] // Day	
-	
+
     $AhmetiWpTimelineDate='';
-    
-    if ( $explDate[0] > 0 ){
+
+    if($explDate[0] > 0){
         $AhmetiWpTimelineDate.=$explDate[0];
-        if ( $explDate[1] > 0 ){
+        if($explDate[1] > 0){
             $AhmetiWpTimelineDate.='.'.$explDate[1];
-            if ( $explDate[2] > 0 ){
+            if($explDate[2] > 0){
                 $AhmetiWpTimelineDate.='.'.$explDate[2];
-                if ( $explTime[1] != '00:00:00' ){
+                if($explTime[1] != '00:00:00'){
                     $AhmetiWpTimelineDate.=' '.$explTime[1];
                 }
             }
         }
     }
-    
-    return '<span>'.$AhmetiWpTimelineDate.'</span>';
+
+    return $AhmetiWpTimelineDate;
 }
 
 
@@ -237,86 +238,98 @@ function AhmetiWpTimelineShortCodeOutput( $atts ) {
 
 
 
-    function AhmetiWpTimelineSayfala($site_url,$top_sayfa,$page,$limit,$page_url)
-    {
-        // Sayfalama Şeridimiz
+function AhmetiWpTimelineSayfala($site_url,$top_sayfa,$page,$limit,$page_url)
+{
+    // Sayfalama Şeridimiz
 
-        if ($top_sayfa > $limit) :
+    if($top_sayfa > $limit) :
 
         echo '<div id="sayfala"><span class="say_sabit">Sayfalar</span>';
 
-        $x = 5; // Aktif sayfadan önceki/sonraki sayfa gösterim sayisi
-        $lastP = ceil($top_sayfa / $limit);
+        $x=5; // Aktif sayfadan önceki/sonraki sayfa gösterim sayisi
+        $lastP=ceil($top_sayfa / $limit);
 
         // sayfa 1'i yazdir
-        if ($page==1){
+        if($page == 1){
             echo '<span class="say_aktif">1</span>';
         }else{
             echo '<a class="say_a" href="'.$site_url.''.$page_url.'">1</a>';
         }
 
         // "..." veya direkt 2
-        if ($page-$x>2){
+        if($page - $x > 2){
             echo '<span class="say_b">...</span>';
-            $i = $page-$x;
+            $i=$page - $x;
         }else{
-            $i = 2;
+            $i=2;
         }
         // +/- $x sayfalari yazdir
-        for ($i; $i<=$page+$x; $i++){
-            if ($i==$page)
-            echo '<span class="say_aktif">'.$i.'</span>';
+        for($i; $i <= $page + $x; $i++){
+            if($i == $page)
+                echo '<span class="say_aktif">'.$i.'</span>';
             else
-            echo '<a class="say_a" href="'.$site_url.''.$page_url.'&is_page='.$i.'">'.$i.'</a>';
-            if ($i==$lastP)
-            break;
+                echo '<a class="say_a" href="'.$site_url.''.$page_url.'&is_page='.$i.'">'.$i.'</a>';
+            if($i == $lastP)
+                break;
         }
 
         // "..." veya son sayfa
-        if ($page+$x<$lastP-1){
+        if($page + $x < $lastP - 1){
             echo '<span class="say_b">...</span>';
             echo '<a class="say_a" href="'.$site_url.''.$page_url.'&is_page='.$lastP.'">'.$lastP.'</a>';
-        }elseif ($page+$x==$lastP-1){
+        }elseif($page + $x == $lastP - 1){
             echo '<a class="say_a" href="'.$site_url.''.$page_url.'&is_page='.$lastP.'">'.$lastP.'</a>';
         }
         echo '</div>';//#sayfala
-        endif;
+    endif;
+}
+    
+    
+class AhmetiWpTimelineAddEditorButton{
+    # Plugin Name: mygallery
+    # Plugin URI: http://wphardcore.com
+    # Description: A simple user interface for Gallery shortcode
+    # Version: 0.1
+    # Author: Gary Cao
+    # Author URI: http://garyc40.com
+
+
+
+    public function __construct()
+    {
+        add_action('admin_init',array($this,'action_admin_init'));
     }
-    
-    
-class AhmetiWpTimelineAddEditorButton
-{
-        # Plugin Name: mygallery
-        # Plugin URI: http://wphardcore.com
-        # Description: A simple user interface for Gallery shortcode
-        # Version: 0.1
-        # Author: Gary Cao
-        # Author URI: http://garyc40.com
-    
-	public function __construct() {
-		add_action( 'admin_init', array( $this, 'action_admin_init' ) );
-	}
-	
-	public function action_admin_init() {
-		// only hook up these filters if we're in the admin panel, and the current user has permission
-		// to edit posts and pages
-		if ( current_user_can( 'edit_posts' ) && current_user_can( 'edit_pages' ) ) {
-			add_filter( 'mce_buttons', array( $this, 'filter_mce_button' ) );
-			add_filter( 'mce_external_plugins', array( $this, 'filter_mce_plugin' ) );
-		}
-	}
-	
-	public function filter_mce_button( $buttons ) {
-		// add a separation before our button, here our button's id is "mygallery_button"
-		array_push( $buttons, '|', 'mygallery_button' );
-		return $buttons;
-	}
-	
-	public function filter_mce_plugin( $plugins ) {
-		// this plugin file will work the magic of our button
-		$plugins['mygallery'] = plugins_url().'/ahmeti-wp-timeline/Admin/EditorButton/EditorButton.js';
-		return $plugins;
-	}
+
+
+
+    public function action_admin_init()
+    {
+        // only hook up these filters if we're in the admin panel, and the current user has permission
+        // to edit posts and pages
+        if(current_user_can('edit_posts') && current_user_can('edit_pages')){
+            add_filter('mce_buttons',array($this,'filter_mce_button'));
+            add_filter('mce_external_plugins',array($this,'filter_mce_plugin'));
+        }
+    }
+
+
+
+    public function filter_mce_button($buttons)
+    {
+        // add a separation before our button, here our button's id is "mygallery_button"
+        array_push($buttons,'|','mygallery_button');
+        return $buttons;
+    }
+
+
+
+    public function filter_mce_plugin($plugins)
+    {
+        // this plugin file will work the magic of our button
+        $plugins['mygallery']=plugins_url().'/ahmeti-wp-timeline/Admin/EditorButton/EditorButton.js';
+        return $plugins;
+    }
+
 }
 
 ?>

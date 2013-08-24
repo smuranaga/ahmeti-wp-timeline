@@ -164,7 +164,7 @@ function AhmetiWpTimelineShortCodeOutput( $atts ) {
     
     $AhmetiSay=true;
             
-    $sql_group=mysql_query("SELECT * FROM wp_ahmeti_wp_timeline WHERE group_id='$group_id' AND type='event' ORDER BY timeline_bc ASC, timeline_date ASC ");
+    $sql_group=mysql_query('SELECT * FROM '.$wpdb->prefix.'ahmeti_wp_timeline WHERE group_id="'.$group_id.'" AND type="event" ORDER BY timeline_bc ASC, timeline_date ASC ');
     while($row_group=mysql_fetch_array($sql_group)){
 
         if ($row_group['timeline_bc'] < 0 ){

@@ -10,10 +10,10 @@ if (!empty($_POST)){
 
     }else{
 
-        @$last_group_id=mysql_fetch_array(mysql_query("SELECT group_id FROM wp_ahmeti_wp_timeline ORDER BY group_id DESC LIMIT 0,1"));
+        @$last_group_id=mysql_fetch_array(mysql_query('SELECT group_id FROM '.$wpdb->prefix.'ahmeti_wp_timeline ORDER BY group_id DESC LIMIT 0,1'));
         $group_id=(int)@$last_group_id['group_id'] + 1;
         
-        $sql=mysql_query("insert into wp_ahmeti_wp_timeline (group_id,title,type,timeline_bc,timeline_date,event_content) values ('$group_id','$title','group_name','0','0000-00-00 00:00:00',null) ");
+        $sql=mysql_query('insert into '.$wpdb->prefix.'ahmeti_wp_timeline (group_id,title,type,timeline_bc,timeline_date,event_content) values ("'.$group_id.'","'.$title.'","group_name","0","0000-00-00 00:00:00",null) ');
 
         if ($sql){
             echo '<p class="ahmeti_ok">Grup başarıyla eklendi.</p>';

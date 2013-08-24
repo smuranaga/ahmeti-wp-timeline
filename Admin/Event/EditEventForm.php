@@ -2,7 +2,7 @@
 <?php
 $event_id=(int)$_GET['event_id'];
 
-$event=mysql_fetch_array(mysql_query("SELECT * FROM wp_ahmeti_wp_timeline WHERE event_id=$event_id AND type='event' "));
+$event=mysql_fetch_array(mysql_query('SELECT * FROM '.$wpdb->prefix.'ahmeti_wp_timeline WHERE event_id='.$event_id.' AND type="event" '));
 
 
 $exp_date=explode(' ',$event['timeline_date']);
@@ -65,7 +65,7 @@ wp_enqueue_style( 'AhmetiWpTimelineJqueryUiCss' );
         <select name="group_id">
             <option>Grubu Seçiniz...</option>
             <?php
-                $group_list=mysql_query("SELECT group_id,title FROM wp_ahmeti_wp_timeline WHERE type='group_name' ORDER BY title ASC ");
+                $group_list=mysql_query('SELECT group_id,title FROM '.$wpdb->prefix.'ahmeti_wp_timeline WHERE type="group_name" ORDER BY title ASC');
                 while($group_row=mysql_fetch_array($group_list)){
                     ?>
                     <option value="<?php echo $group_row['group_id']; ?>" <?php if($event['group_id']==$group_row['group_id']){ echo 'selected="selected"'; } ?>><?php echo $group_row['title']; ?></option>

@@ -55,7 +55,13 @@ if (!empty($_POST)){
             $sql_bc_colon='-'.$event_bc;
         }
         
-        $sql=mysql_query("UPDATE wp_ahmeti_wp_timeline SET group_id='$group_id',timeline_bc='$sql_bc_colon',timeline_date='$sql_datetime_colon',title='$event_title',event_content='$event_content',type='event' WHERE event_id='$event_id' ");
+        $sql=mysql_query('UPDATE '.$wpdb->prefix.'ahmeti_wp_timeline SET 
+            group_id="'.$group_id.'",
+            timeline_bc="'.$sql_bc_colon.'",
+            timeline_date="'.$sql_datetime_colon.'",
+            title="'.$event_title.'",
+            event_content="'.$event_content.'",
+            type="event" WHERE event_id="'.$event_id.'"');
 
         if ($sql){
             echo '<p class="ahmeti_ok">Olay başarıyla güncellendi.</p>';

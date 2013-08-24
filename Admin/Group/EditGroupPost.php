@@ -11,7 +11,7 @@ if (!empty($_POST)){
 
     }else{
 
-        $sql=mysql_query("UPDATE wp_ahmeti_wp_timeline SET title='$title' WHERE group_id='$id' AND type='group_name' ");
+        $sql=mysql_query('UPDATE '.$wpdb->prefix.'ahmeti_wp_timeline SET title="'.$title.'" WHERE group_id="'.$id.'" AND type="group_name" ');
 
         if ($sql){
             echo '<p class="ahmeti_ok">Grup başarıyla güncellendi.</p>';

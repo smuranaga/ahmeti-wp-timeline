@@ -4,7 +4,7 @@
     Plugin URI: http://ahmeti.net/
     Description: Herhangi bir konu hakkında güzel bir timeline (zaman çizelgesi) oluşarabileceğiniz bir eklenti.
     Author: Ahmet Imamoglu
-    Version: 1.1
+    Version: 1.2
     Author URI: http://ahmeti.net/
 */
 
@@ -29,6 +29,8 @@
 define('AHMETI_WP_TIMELINE_KONTROL',true);
 define('AHMETI_WP_TIMELINE_ADMIN_URL', admin_url().'admin.php?page=ahmeti-wp-timeline/index.php');
 
+global $wpdb;
+define('AHMETI_WP_TIMELINE_DB_PREFIX',$wpdb->prefix);
 
 require_once 'AhmetiWpTimelineFunction.php';
 
@@ -62,6 +64,9 @@ if (!is_admin()) {
     
     // Admin Panel - Yonetim Paneli Olustur
     add_action('admin_menu', 'Ahmeti_Wp_Timeline_Admin');    
+    
+    // Add Editor Button Short Code
+    new AhmetiWpTimelineAddEditorButton();
 } 
  
 
@@ -121,9 +126,5 @@ function Ahmeti_Wp_Timeline_Index(){   //ahmeti_index
     
     require_once 'footer.php';
 }
-
-// Add Editor Button Short Code
-new AhmetiWpTimelineAddEditorButton();
- 
 
 ?>

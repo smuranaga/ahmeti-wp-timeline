@@ -6,7 +6,7 @@
 $page=@$_GET['is_page'];
 (int)$page_limit=get_option('AhmetiWpTimelinePageLimit');
 
-$group_say=mysql_fetch_assoc(mysql_query('SELECT COUNT(event_id) FROM '.$wpdb->prefix.'ahmeti_wp_timeline WHERE type="event" '));
+$group_say=mysql_fetch_assoc(mysql_query('SELECT COUNT(event_id) FROM '.AHMETI_WP_TIMELINE_DB_PREFIX.'ahmeti_wp_timeline WHERE type="event" '));
 
 if(empty($page) || !is_numeric($page)){
     $baslangic=1;
@@ -16,7 +16,7 @@ if(empty($page) || !is_numeric($page)){
 }
 
 $groupDb=array();
-$grouplist=mysql_query('SELECT group_id,title FROM '.$wpdb->prefix.'ahmeti_wp_timeline WHERE type="group_name"');
+$grouplist=mysql_query('SELECT group_id,title FROM '.AHMETI_WP_TIMELINE_DB_PREFIX.'ahmeti_wp_timeline WHERE type="group_name"');
 while($group=mysql_fetch_array($grouplist)){
     $groupDb[$group['group_id']]=$group['title'];
 }
@@ -24,7 +24,7 @@ while($group=mysql_fetch_array($grouplist)){
 $toplam_sayfa=(int)$group_say['COUNT(event_id)'];
 $baslangic=($baslangic-1)*$page_limit;
 
-$event_list=mysql_query('SELECT event_id,group_id,title,timeline_bc,timeline_date FROM '.$wpdb->prefix.'ahmeti_wp_timeline WHERE type="event" ORDER BY event_id DESC LIMIT '.$baslangic.','.$page_limit);
+$event_list=mysql_query('SELECT event_id,group_id,title,timeline_bc,timeline_date FROM '.AHMETI_WP_TIMELINE_DB_PREFIX.'ahmeti_wp_timeline WHERE type="event" ORDER BY event_id DESC LIMIT '.$baslangic.','.$page_limit);
 
 if($toplam_sayfa > 0){
     ?>

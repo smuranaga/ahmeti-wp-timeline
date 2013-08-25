@@ -2,12 +2,10 @@
 <?php
 function Ahmeti_Wp_Timeline_Kurulum()
 {
-    // $wpdb adlı  WP'nin veritabanı sınıfını fonksiyonumuza çağırıyoruz.
     global $wpdb;
-
+    
     // Veri Tabanı Oluştur...
-    // $wpdb isimli WP'nin veritabanı sınıfına $wpdb->soz olarak tanıtıyoruz
-    $wpdb->table = $wpdb->prefix . 'ahmeti_wp_timeline';
+    $create_table = AHMETI_WP_TIMELINE_DB_PREFIX . 'ahmeti_wp_timeline';
   
 
      // Tablolar Var Mı? Eğer varsa hiç bir şey yapma...
@@ -24,7 +22,7 @@ function Ahmeti_Wp_Timeline_Kurulum()
         // Tablo var
     }else{
         // SQL Çalıştır
-        $db_sql="CREATE TABLE IF NOT EXISTS `$wpdb->table` (
+        $db_sql="CREATE TABLE IF NOT EXISTS `$create_table` (
         `event_id` bigint(20) NOT NULL AUTO_INCREMENT,
         `group_id` smallint(6) NOT NULL DEFAULT '0',
         `timeline_bc` bigint(20) DEFAULT '0',
@@ -35,7 +33,7 @@ function Ahmeti_Wp_Timeline_Kurulum()
         PRIMARY KEY (`event_id`)
         ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=23 ;
         ";
-        $wpdb->query($db_sql);        
+        $wpdb->query( $db_sql );
     }  
     
 
@@ -165,7 +163,7 @@ function AhmetiWpTimelineShortCodeOutput( $atts ) {
     
     $AhmetiSay=true;
             
-    $sql_group=mysql_query('SELECT * FROM '.$wpdb->prefix.'ahmeti_wp_timeline WHERE group_id="'.$group_id.'" AND type="event" ORDER BY timeline_bc ASC, timeline_date ASC ');
+    $sql_group=mysql_query('SELECT * FROM '.AHMETI_WP_TIMELINE_DB_PREFIX.'ahmeti_wp_timeline WHERE group_id="'.$group_id.'" AND type="event" ORDER BY timeline_bc ASC, timeline_date ASC ');
     while($row_group=mysql_fetch_array($sql_group)){
 
         if ($row_group['timeline_bc'] < 0 ){

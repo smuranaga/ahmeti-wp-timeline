@@ -55,7 +55,7 @@ if (!empty($_POST)){
             $sql_bc_colon='-'.$event_bc;
         }
         
-        $sql=mysql_query('UPDATE '.$wpdb->prefix.'ahmeti_wp_timeline SET 
+        $sql=mysql_query('UPDATE '.AHMETI_WP_TIMELINE_DB_PREFIX.'ahmeti_wp_timeline SET 
             group_id="'.$group_id.'",
             timeline_bc="'.$sql_bc_colon.'",
             timeline_date="'.$sql_datetime_colon.'",

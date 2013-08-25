@@ -2,7 +2,7 @@
 <?php
 $group_id=(int)$_GET['group_id'];
 
-$group_name=mysql_fetch_array(mysql_query('SELECT group_id,title FROM '.$wpdb->prefix.'ahmeti_wp_timeline WHERE group_id="'.$group_id.'" AND type="group_name" '));
+$group_name=mysql_fetch_array(mysql_query('SELECT group_id,title FROM '.AHMETI_WP_TIMELINE_DB_PREFIX.'ahmeti_wp_timeline WHERE group_id="'.$group_id.'" AND type="group_name" '));
 ?>
 
 <h2>Grubu Düzenle</h2>

@@ -55,7 +55,7 @@ if (!empty($_POST)){
         }
         
 
-        $sql=mysql_query('insert into '.$wpdb->prefix.'ahmeti_wp_timeline (group_id,timeline_bc,timeline_date,title,event_content,type) values ("'.$group_id.'","'.$sql_bc_colon.'","'.$sql_datetime_colon.'","'.$event_title.'","'.$event_content.'","event")');
+        $sql=mysql_query('insert into '.AHMETI_WP_TIMELINE_DB_PREFIX.'ahmeti_wp_timeline (group_id,timeline_bc,timeline_date,title,event_content,type) values ("'.$group_id.'","'.$sql_bc_colon.'","'.$sql_datetime_colon.'","'.$event_title.'","'.$event_content.'","event")');
 
         if ($sql){
             echo '<p class="ahmeti_ok">Olay başarıyla eklendi.</p>';

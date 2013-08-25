@@ -10,7 +10,7 @@ if (!empty($_GET)){
 
     }else{
 
-        $sql=mysql_query('DELETE FROM '.$wpdb->prefix.'ahmeti_wp_timeline WHERE event_id="'.$id.'" AND type="event" ');
+        $sql=mysql_query('DELETE FROM '.AHMETI_WP_TIMELINE_DB_PREFIX.'ahmeti_wp_timeline WHERE event_id="'.$id.'" AND type="event" ');
 
         if ($sql){
             echo '<p class="ahmeti_ok">Olay başarıyla silindi.</p>';

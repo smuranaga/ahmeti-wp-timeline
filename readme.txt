@@ -32,6 +32,12 @@ Yazdığınız olayların içine her türlü çoklu ortam (resim,video,mp3 vb.) 
 
 == Changelog ==
 
+= 1.2 =
+* Yılların başındaki 0 lar kaldırıldı.
+
+= 1.2 =
+* Küçük hatalar giderildi.
+
 = 1.1 =
 * Tüm sorgulara "$wpdb->prefix" eklendi.
 

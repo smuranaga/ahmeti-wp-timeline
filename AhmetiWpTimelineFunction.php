@@ -204,7 +204,7 @@ function AhmetiWpTimelineShortCodeOutput( $atts ) {
             <div class="timelineMajor">
                 <h2 class="timelineMajorMarker"><span>';
             
-            if($AhmetiYear < 0){ $AhmetiWpTimelineOut.='M.Ö. '.ltrim($AhmetiYear,'-'); }else{ $AhmetiWpTimelineOut.=$AhmetiYear; }
+            if($AhmetiYear < 0){ $AhmetiWpTimelineOut.='M.Ö. '.ltrim($AhmetiYear,'-'); }else{ $AhmetiWpTimelineOut.=(int)$AhmetiYear; }
             
             $AhmetiWpTimelineOut.='</span></h2>
             

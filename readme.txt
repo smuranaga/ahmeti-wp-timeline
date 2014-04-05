@@ -19,6 +19,8 @@ Birden çok zaman çizelgesi (timeline) oluşturmaya imkanına kavuşabilirsiniz
 Milattan önce özelliği ile milattan önce başlamış ve günümüze kadar devam eden olayların zaman çizelgesini (timeline) oluşturabilirsiniz,
 Yazdığınız olayların içine her türlü çoklu ortam (resim,video,mp3 vb.) ekleyebilirsiniz.
 
+[ Thank you for Timeliner.js | by Tarek Anandan](http://www.technotarek.com/) Tarek Anandan is a freelance website designer based in Washington DC. I design and build custom websites, primarily for nonprofit organizations, art projects and other socially focused ventures. 
+
 [Detaylar için Yükleme Sayfasına Bakın](http://wordpress.org/plugins/ahmeti-wp-timeline/installation/) | 
 [İlgili Yazıyı Takip Edin](http://ahmeti.net/ahmeti-wp-timeline-zaman-cizelgesi-eklentisi/)
 

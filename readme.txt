@@ -45,10 +45,10 @@ Yazdığınız olayların içine her türlü çoklu ortam (resim,video,mp3 vb.) 
 1. Eklentiyi aktif ettikten sonra editörün yanına [şurada görülen] (http://wordpress.org/plugins/ahmeti-wp-timeline/screenshots/) küçük bir buton çıkacaktır.
 1. Butona tıkladıktan sonra açılan pencereye Grup Listesinden hangi timeline (zaman çizelgesi) göstermek isterseniz "Grup_ID" değerini girip "Ekle" butonuna basmanız yeterli olacaktır. 
 
-1.Send the file "ahmeti-wp-timeline" inside .zip into "/wp-content/plugins"
-1. Go to Admin Panel > Plugins menu to activate plugin.
-1. A little button will show up [this picture] (http://wordpress.org/plugins/ahmeti-wp-timeline/screenshots/)
-1. After clicking the button, you can select which timeline to show by entering "Grup_ID" value and hit "ADD" button.
+2. Send the file "ahmeti-wp-timeline" inside .zip into "/wp-content/plugins"
+2. Go to Admin Panel > Plugins menu to activate plugin.
+2. A little button will show up [this picture] (http://wordpress.org/plugins/ahmeti-wp-timeline/screenshots/)
+2. After clicking the button, you can select which timeline to show by entering "Grup_ID" value and hit "ADD" button.
 
 == Changelog ==
 

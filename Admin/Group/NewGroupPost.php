@@ -6,7 +6,9 @@ if (!empty($_POST)){
 
     if(empty($title)){
 
-        echo '<p class="ahmeti_hata">Boş alan bırakmayınız.</p>';
+        ?>
+        <p class="ahmeti_hata"><?php echo _e('Do not leave empty fields.','ahmeti-wp-timeline'); ?></p>
+        <?php
 
     }else{
 
@@ -16,10 +18,14 @@ if (!empty($_POST)){
         $sql=mysql_query('insert into '.AHMETI_WP_TIMELINE_DB_PREFIX.'ahmeti_wp_timeline (group_id,title,type,timeline_bc,timeline_date,event_content) values ("'.$group_id.'","'.$title.'","group_name","0","0000-00-00 00:00:00",null) ');
 
         if ($sql){
-            echo '<p class="ahmeti_ok">Grup başarıyla eklendi.</p>';
+            ?>
+            <p class="ahmeti_ok"><?php echo _e('The Group has successfully added.','ahmeti-wp-timeline'); ?></p>
+            <?php
         }else{
-            echo '<p class="ahmeti_hata">Grup eklenirken hata oluştu.</p>';
-        }                
+            ?>
+            <p class="ahmeti_hata"><?php echo _e('An error occurred while adding group.','ahmeti-wp-timeline'); ?></p>
+            <?php
+        }      
     }
 }
 ?>

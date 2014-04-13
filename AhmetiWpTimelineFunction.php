@@ -49,6 +49,8 @@ function Ahmeti_Wp_Timeline_Kurulum()
 function Ahmeti_Wp_Timeline_Admin_Head()
 {
     /* Wp Admin Head */
+    
+    load_plugin_textdomain('ahmeti-wp-timeline', FALSE, dirname(plugin_basename(__FILE__)).'/languages/');
      
     wp_enqueue_script('jquery');
     
@@ -75,7 +77,7 @@ function Ahmeti_Wp_Timeline_Admin_Head()
 function Ahmeti_Wp_Timeline_Head()
 {
     /* Wp User Head */
-    
+    load_plugin_textdomain('ahmeti-wp-timeline', FALSE, dirname(plugin_basename(__FILE__)).'/languages/');
     
     /* JS */
     wp_enqueue_script('jquery');
@@ -84,7 +86,10 @@ function Ahmeti_Wp_Timeline_Head()
     wp_enqueue_script('timelinerColorboxJs');
     
     wp_register_script( 'timelinerTimelinerJs', plugins_url().'/ahmeti-wp-timeline/TimelinerJquery/js/timeliner.min.js', array( 'jquery' ));
+    $translation_array = array( 'ExpandAll' => __('+ Expand All','ahmeti-wp-timeline'), 'CollapseAll' => __('- Collapse All','ahmeti-wp-timeline') );
+    wp_localize_script( 'timelinerTimelinerJs', 'timelinerTimelinerJsObject', $translation_array );
     wp_enqueue_script('timelinerTimelinerJs');
+    
     
     
     /* CSS */
@@ -105,6 +110,7 @@ function Ahmeti_Wp_Timeline_Admin()
 {
     /* Admin Menü */
     add_menu_page( 'Ahmeti Wp Timeline', 'Timeline', '5', 'ahmeti-wp-timeline/index.php', 'Ahmeti_Wp_Timeline_Index', plugins_url('ahmeti-wp-timeline/images/ahmeti-wp-timeline-icon.png'), 8 );
+    //load_plugin_textdomain('ahmeti-wp-timeline', FALSE, dirname(plugin_basename(__FILE__)).'/languages/');
 }
 
 
@@ -156,11 +162,15 @@ function AhmetiWpTimelineShortCodeOutput( $atts ) {
      * 
      */
     
+    //echo _e('Hepsini_Ac','ahmeti-wp-timeline');
+    
+    
     $group_id=$atts['groupid'];
 
     $AhmetiWpTimelineEndSqlYear='';
     $AhmetiWpTimelineOut='<div id="timelineContainer" unselectable="on">';
-    
+    $AhmetiWpTimelineOut.='<a class="expandAll" style="float:right">'.__('+ Expand All','ahmeti-wp-timeline').'</a><br/>';
+
     $AhmetiSay=true;
             
     $sql_group=mysql_query('SELECT * FROM '.AHMETI_WP_TIMELINE_DB_PREFIX.'ahmeti_wp_timeline WHERE group_id="'.$group_id.'" AND type="event" ORDER BY timeline_bc ASC, timeline_date ASC ');
@@ -204,7 +214,7 @@ function AhmetiWpTimelineShortCodeOutput( $atts ) {
             <div class="timelineMajor">
                 <h2 class="timelineMajorMarker"><span>';
             
-            if($AhmetiYear < 0){ $AhmetiWpTimelineOut.='M.Ö. '.ltrim($AhmetiYear,'-'); }else{ $AhmetiWpTimelineOut.=(int)$AhmetiYear; }
+            if($AhmetiYear < 0){ $AhmetiWpTimelineOut.=__('BC','ahmeti-wp-timeline').' '.ltrim($AhmetiYear,'-'); }else{ $AhmetiWpTimelineOut.=(int)$AhmetiYear; }
             
             $AhmetiWpTimelineOut.='</span></h2>
             
@@ -235,6 +245,7 @@ function AhmetiWpTimelineShortCodeOutput( $atts ) {
 }
 
 
+$pageslang=__('Pages','ahmeti-wp-timeline');
 
 function AhmetiWpTimelineSayfala($site_url,$top_sayfa,$page,$limit,$page_url)
 {
@@ -242,7 +253,9 @@ function AhmetiWpTimelineSayfala($site_url,$top_sayfa,$page,$limit,$page_url)
 
     if($top_sayfa > $limit) :
 
-        echo '<div id="sayfala"><span class="say_sabit">Sayfalar</span>';
+        
+        
+        echo '<div id="sayfala"><span class="say_sabit">'.__('Pages','ahmeti-wp-timeline').'</span>';
 
         $x=5; // Aktif sayfadan önceki/sonraki sayfa gösterim sayisi
         $lastP=ceil($top_sayfa / $limit);
@@ -324,7 +337,12 @@ class AhmetiWpTimelineAddEditorButton{
     public function filter_mce_plugin($plugins)
     {
         // this plugin file will work the magic of our button
-        $plugins['mygallery']=plugins_url().'/ahmeti-wp-timeline/Admin/EditorButton/EditorButton.js';
+        
+        if (WPLANG == 'tr_TR'){
+            $plugins['mygallery']=plugins_url().'/ahmeti-wp-timeline/Admin/EditorButton/EditorButton-tr_TR.js';
+        }else{
+            $plugins['mygallery']=plugins_url().'/ahmeti-wp-timeline/Admin/EditorButton/EditorButton-en_US.js';
+        }
         return $plugins;
     }
 

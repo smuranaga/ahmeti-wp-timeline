@@ -27,13 +27,19 @@ if (!empty($_POST)){
     
     
     if(empty($event_title) || empty($group_id) ){
-        echo '<p class="ahmeti_hata">Boş alan bırakmayınız.</p>';
+        ?>
+        <p class="ahmeti_hata"><?php echo _e('Do not leave empty fields.','ahmeti-wp-timeline'); ?></p>
+        <?php
         
     }elseif($event_date_is == true && $event_bc_is==true){
-        echo '<p class="ahmeti_hata">Hem milattan önce hem de milattan sonraya değer girmişsiniz. Sadece birisine girerek tekrar deneyiniz.</p>';
+        ?>
+        <p class="ahmeti_hata"><?php echo _e('Both before Christ and Anno Domini value, you entered. Please try again by entering only one.','ahmeti-wp-timeline'); ?></p>
+        <?php
 
     }elseif($event_date_is == false && $event_bc_is==false){
-        echo '<p class="ahmeti_hata">Milattan önceye veya milattan sonraya değer giriniz.</p>';
+        ?>
+        <p class="ahmeti_hata"><?php echo _e('Please enter a value in any of the two. (Before Christ or Anno Domini)','ahmeti-wp-timeline'); ?></p>
+        <?php
     }else{
         
         $sql_bc_colon='';
@@ -58,10 +64,14 @@ if (!empty($_POST)){
         $sql=mysql_query('insert into '.AHMETI_WP_TIMELINE_DB_PREFIX.'ahmeti_wp_timeline (group_id,timeline_bc,timeline_date,title,event_content,type) values ("'.$group_id.'","'.$sql_bc_colon.'","'.$sql_datetime_colon.'","'.$event_title.'","'.$event_content.'","event")');
 
         if ($sql){
-            echo '<p class="ahmeti_ok">Olay başarıyla eklendi.</p>';
+            ?>
+            <p class="ahmeti_ok"><?php echo _e('Event was successfully added.','ahmeti-wp-timeline'); ?></p>
+            <?php
         }else{
-            echo '<p class="ahmeti_hata">Olay eklenirken hata oluştu.</p>';
-        }                
+            ?>
+            <p class="ahmeti_hata"><?php echo _e('An error occurred while adding this event.','ahmeti-wp-timeline'); ?></p>
+            <?php
+        }                   
     }
 }
 ?>

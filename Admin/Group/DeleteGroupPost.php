@@ -5,17 +5,21 @@ if (!empty($_GET)){
     (int)$id=mysql_real_escape_string(trim(stripslashes($_GET['group_id'])));
 
     if( empty($id) ){
-
-        echo '<p class="ahmeti_hata">Bir hata oluştu.</p>';
-
+    ?>
+        <p class="ahmeti_hata"><?php echo _e('An error has occurred.','ahmeti-wp-timeline'); ?></p>
+    <?php
     }else{
 
         $sql=mysql_query('DELETE FROM '.AHMETI_WP_TIMELINE_DB_PREFIX.'ahmeti_wp_timeline WHERE group_id="'.$id.'"');
 
         if ($sql){
-            echo '<p class="ahmeti_ok">Grup başarıyla silindi.</p>';
+            ?>
+            <p class="ahmeti_ok"><?php echo _e('Group deleted successfully.','ahmeti-wp-timeline'); ?></p>
+            <?php
         }else{
-            echo '<p class="ahmeti_hata">Grup silinirken hata oluştu.</p>';
+            ?>
+            <p class="ahmeti_hata"><?php echo _e('An error occurred while deleting the group.','ahmeti-wp-timeline'); ?></p>
+            <?php
         }                
     }
 }

@@ -8,10 +8,24 @@ Stable tag: 3.5.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
+A nice plugin that allows you to make a timeline about anything.
 Herhangi bir konu hakkında güzel bir timeline (zaman çizelgesi) oluşarabileceğiniz bir eklenti.
 
 == Description ==
 
+[EN]
+You can prepare your own timeline by years.
+You can also make a famous person's timeline such as singers, footballers, artists
+You can also prepare more than one timeline.
+You can show a timeline in any wordpress page as you wish.
+BC and AD option gives you a chance to make a timeline about an event which has begun BC and continued to AD.
+You can add any multimedia (mp3, video, pictures...) into timeline.
+
+[For Details, Refer to Installation Page](http://wordpress.org/plugins/ahmeti-wp-timeline/installation/) | 
+[Please Follow Article About](http://ahmeti.net/ahmeti-wp-timeline-zaman-cizelgesi-eklentisi/)
+
+
+[TR]
 Kendinize ait zaman çizelgesini (timeline) yıllara göre hazılayabilirsiniz,
 Başka birisine (sanatçı,topçu,popçu) ait zaman çizelgesi (timeline) yapabilirsiniz,
 Birden çok zaman çizelgesi (timeline) oluşturmaya imkanına kavuşabilirsiniz,
@@ -19,10 +33,10 @@ Birden çok zaman çizelgesi (timeline) oluşturmaya imkanına kavuşabilirsiniz
 Milattan önce özelliği ile milattan önce başlamış ve günümüze kadar devam eden olayların zaman çizelgesini (timeline) oluşturabilirsiniz,
 Yazdığınız olayların içine her türlü çoklu ortam (resim,video,mp3 vb.) ekleyebilirsiniz.
 
-[ Thank you for Timeliner.js | by Tarek Anandan](http://www.technotarek.com/) Tarek Anandan is a freelance website designer based in Washington DC. He design and build custom websites, primarily for nonprofit organizations, art projects and other socially focused ventures. 
-
 [Detaylar için Yükleme Sayfasına Bakın](http://wordpress.org/plugins/ahmeti-wp-timeline/installation/) | 
 [İlgili Yazıyı Takip Edin](http://ahmeti.net/ahmeti-wp-timeline-zaman-cizelgesi-eklentisi/)
+
+[ Thank you for Timeliner.js | by Tarek Anandan](http://www.technotarek.com/timeliner/) Tarek Anandan is a freelance website designer based in Washington DC. He design and build custom websites, primarily for nonprofit organizations, art projects and other socially focused ventures. 
 
 == Installation ==
 
@@ -31,14 +45,18 @@ Yazdığınız olayların içine her türlü çoklu ortam (resim,video,mp3 vb.) 
 1. Eklentiyi aktif ettikten sonra editörün yanına [şurada görülen] (http://wordpress.org/plugins/ahmeti-wp-timeline/screenshots/) küçük bir buton çıkacaktır.
 1. Butona tıkladıktan sonra açılan pencereye Grup Listesinden hangi timeline (zaman çizelgesi) göstermek isterseniz "Grup_ID" değerini girip "Ekle" butonuna basmanız yeterli olacaktır. 
 
+1.Send the file "ahmeti-wp-timeline" inside .zip into "/wp-content/plugins"
+1. Go to Admin Panel > Plugins menu to activate plugin.
+1. A little button will show up [this picture] (http://wordpress.org/plugins/ahmeti-wp-timeline/screenshots/)
+1. After clicking the button, you can select which timeline to show by entering "Grup_ID" value and hit "ADD" button.
 
 == Changelog ==
 
-= 1.2 =
-* Yılların başındaki 0 lar kaldırıldı.
+= 2.0 =
+* İngilizce dili eklendi.
 
 = 1.2 =
-* Küçük hatalar giderildi.
+* Yılların başındaki 0 lar kaldırıldı.
 
 = 1.1 =
 * Tüm sorgulara "$wpdb->prefix" eklendi.

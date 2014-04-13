@@ -11,14 +11,14 @@
 			if (id === 'mygallery_button') {
 				// creates the button
 				var button = controlManager.createButton('mygallery_button', {
-					title : 'Timeline (Zaman Çizelgesi)', // title of the button
+					title : 'Timeline', // title of the button
 					image : AhmetiWpTimelineJsData.pluginUrl+'images/ahmeti-wp-timeline-button.png',  // path to the button's image
 					onclick : function() {
 						// triggers the thickbox
 						var width = jQuery(window).width(), H = jQuery(window).height(), W = ( 400 < width ) ? 400 : width;
 						W = W - 80;
 						H = H - 500;
-						tb_show( 'Timeline (Zaman Çizelgesi)', '#TB_inline?width='+W+'&height='+H+'&inlineId=mygallery-form' );
+						tb_show( 'Timeline', '#TB_inline?width='+W+'&height='+H+'&inlineId=mygallery-form' );
                                                 
                                                 jQuery('#TB_window').css('width',W+'px').css('height',H+'px');
 					}
@@ -39,17 +39,16 @@
 		// you should achieve this using AJAX instead of direct html code like this
 		var form = jQuery('<div id="mygallery-form"><table id="mygallery-table" class="form-table">\
 			<tr>\
-				<td><br /><label for="mygallery-columns">Timeline (Zaman Çizelgesi) Grup_ID</label></td>\
-				<small>Grup_ID değerine Admin Paneli -> Timeline -> Grup Listesinden ulaşabilirsiniz.</small></td>\
+				<td><br />Timeline Group ID<br /><br /><small>Group ID value can be found "Admin Panel -> Timeline -> Group List"</small></td>\
 			</tr>\
 			<tr>\
-				<td><input type="text" id="mygallery-groupid" size="10" name="groupid" value="" /><br />\
+				<td>Grup ID: <input type="text" id="mygallery-groupid" size="10" name="groupid" value="" /><br />\
 				<!--<small>specify the number of columns.</small></td>-->\
 			</tr>\
 			<tr>\
 				<td>\
                                     <p class="submit">\
-                                            <input type="button" id="mygallery-submit" class="button-primary" value="Timeline (Zaman Çizelgesi) Ekle" name="submit" />\
+                                            <input type="button" id="mygallery-submit" class="button-primary" value="Add Timeline" name="submit" />\
                                     </p>\
                                 </td>-->\
 			</tr>\

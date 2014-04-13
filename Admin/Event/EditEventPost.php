@@ -28,13 +28,20 @@ if (!empty($_POST)){
     
     
     if(empty($event_id) || empty($event_title) || empty($group_id) ){
-        echo '<p class="ahmeti_hata">Boş alan bırakmayınız.</p>';
+        ?>
+        <p class="ahmeti_hata"><?php echo _e('Do not leave empty fields.','ahmeti-wp-timeline'); ?></p>
+        <?php
         
     }elseif($event_date_is == true && $event_bc_is==true){
-        echo '<p class="ahmeti_hata">Hem milattan önce hem de milattan sonraya değer girmişsiniz. Sadece birisine girerek tekrar deneyiniz.</p>';
-
+        ?>
+        <p class="ahmeti_hata"><?php echo _e('Both before Christ and Anno Domini value, you entered. Please try again by entering only one.','ahmeti-wp-timeline'); ?></p>
+        <?php
+        
     }elseif($event_date_is == false && $event_bc_is==false){
-        echo '<p class="ahmeti_hata">Milattan önceye veya milattan sonraya değer giriniz.</p>';
+        ?>
+        <p class="ahmeti_hata"><?php echo _e('Please enter a value in any of the two. (Before Christ or Anno Domini)','ahmeti-wp-timeline'); ?></p>
+        <?php
+        
     }else{
         
         $sql_bc_colon='';
@@ -64,9 +71,13 @@ if (!empty($_POST)){
             type="event" WHERE event_id="'.$event_id.'"');
 
         if ($sql){
-            echo '<p class="ahmeti_ok">Olay başarıyla güncellendi.</p>';
+            ?>
+            <p class="ahmeti_ok"><?php echo _e('Event was successfully updated.','ahmeti-wp-timeline'); ?></p>
+            <?php
         }else{
-            echo '<p class="ahmeti_hata">Olay güncellenirken hata oluştu.</p>';
+            ?>
+            <p class="ahmeti_hata"><?php echo _e('An error occurred while updating this event.','ahmeti-wp-timeline'); ?></p>
+            <?php
         }                
     }
 }

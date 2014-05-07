@@ -4,17 +4,34 @@ if (!empty($_POST)){
 
     $group_id=mysql_real_escape_string(trim(stripslashes($_POST['group_id'])));
     $event_title=mysql_real_escape_string(trim(stripslashes($_POST['event_title'])));
-    $event_date=mysql_real_escape_string(trim(stripslashes($_POST['event_date'])));  // 0000-00-00
+    
+    $event_date_year=mysql_real_escape_string(trim(stripslashes($_POST['event_date_year'])));
+    $event_date_month=mysql_real_escape_string(trim(stripslashes($_POST['event_date_month'])));
+    $event_date_day=mysql_real_escape_string(trim(stripslashes($_POST['event_date_day'])));
+    
+    if (empty($event_date_year)) {$event_date_year='0000';}
+    if (empty($event_date_month)) {$event_date_month='00';}
+    if (empty($event_date_day)) {$event_date_day='00';}
+    
+    $event_date=$event_date_year.'-'.$event_date_month.'-'.$event_date_day;
     $event_time=mysql_real_escape_string(trim(stripslashes($_POST['event_time'])));  // 00:00:00
     $event_bc=(int)mysql_real_escape_string(trim(stripslashes($_POST['event_bc'])));  // 10000
     $event_content=mysql_real_escape_string(trim(stripslashes($_POST['event_content'])));
     
     
+    /*
     if (preg_match( '/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/', $event_date)){
+        //it's ok 
+        $event_date_is=true;
+    }*/
+
+    
+    if ($event_date != '0000-00-00' ){
         //it's ok 
         $event_date_is=true;
     }
     
+
     if(preg_match('/^(([0-1][0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?)$/', $event_time)){ 
         //it's ok 
         $event_time_is=true;

@@ -52,6 +52,10 @@ Yazdığınız olayların içine her türlü çoklu ortam (resim,video,mp3 vb.) 
 
 == Changelog ==
 
+= 2.1 =
+* Sadece yılı seçilebilmesi eklendi.
+* TinyMce 4.0 butonun görünmemesi düzeltildi.
+
 = 2.0 =
 * İngilizce dili eklendi.
 

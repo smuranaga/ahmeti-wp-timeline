@@ -318,8 +318,22 @@ class AhmetiWpTimelineAddEditorButton{
         // only hook up these filters if we're in the admin panel, and the current user has permission
         // to edit posts and pages
         if(current_user_can('edit_posts') && current_user_can('edit_pages')){
-            add_filter('mce_buttons',array($this,'filter_mce_button'));
-            add_filter('mce_external_plugins',array($this,'filter_mce_plugin'));
+            
+            global $wp_version;
+
+            if (version_compare($wp_version,'3.9','<')){
+
+                // Old TinyMce 3.0
+                add_filter('mce_buttons',array($this,'filter_mce_button')); // < WP 3.9
+                add_filter('mce_external_plugins',array($this,'filter_mce_plugin')); // < WP 3.9
+            }else{
+
+                // New TinyMce 4.0
+                add_filter( 'mce_external_plugins', array($this,'my_add_tinymce_plugin') );
+                add_filter( 'mce_buttons', array($this,'my_register_mce_button') );
+
+            }
+
         }
     }
 
@@ -336,6 +350,7 @@ class AhmetiWpTimelineAddEditorButton{
 
     public function filter_mce_plugin($plugins)
     {
+        
         // this plugin file will work the magic of our button
         
         if (WPLANG == 'tr_TR'){
@@ -346,6 +361,26 @@ class AhmetiWpTimelineAddEditorButton{
         return $plugins;
     }
 
+    
+    
+    
+    
+    
+    // Declare script for new button
+    public function my_add_tinymce_plugin( $plugin_array ) {
+            $plugin_array['my_mce_button'] = plugins_url().'/ahmeti-wp-timeline/Admin/EditorButton/EditorButtonTinyMce4.0.js';
+            //$plugin_array['my_mce_button'] = plugins_url().'/ahmeti-wp-timeline/Admin/EditorButton/EditorButton-tr_TR.js';
+            return $plugin_array;
+    }
+
+    // Register new button in the editor
+    public function my_register_mce_button( $buttons ) {
+            array_push( $buttons, 'my_mce_button' );
+            return $buttons;
+    }
+    
+    
+    
 }
 
 ?>

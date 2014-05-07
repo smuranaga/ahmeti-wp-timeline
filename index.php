@@ -5,7 +5,7 @@
     Plugin URI: http://ahmeti.net/
     Description: A nice plugin that allows you to make a timeline about anything. Herhangi bir konu hakkında güzel bir timeline (zaman çizelgesi) oluşarabileceğiniz bir eklenti.
     Author: Ahmet Imamoglu
-    Version: 2.0
+    Version: 2.1
     Author URI: http://ahmeti.net/
 */
 

@@ -57,7 +57,7 @@ if ( isset($_GET['activate']) && @$_GET['activate'] == 'true' )
 if (!is_admin()) {
     // Wp User Head
     
-    //add_action('wp_enqueue_scripts', 'Ahmeti_Wp_Timeline_Head');
+    add_action('wp_enqueue_scripts', 'Ahmeti_Wp_Timeline_Head');
     
     add_shortcode( 'ahmetiwptimeline', 'AhmetiWpTimelineShortCodeOutput' );
     

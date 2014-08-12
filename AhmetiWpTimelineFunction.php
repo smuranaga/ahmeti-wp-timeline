@@ -10,11 +10,7 @@ function Ahmeti_Wp_Timeline_Kurulum()
 
      // Tablolar Var Mı? Eğer varsa hiç bir şey yapma...
     $table_list_array=array();
-    
-    $table_list=mysql_query("SHOW TABLES FROM ".DB_NAME);
-    while($row=mysql_fetch_row($table_list)){
-        $table_list_array[]=$row[0];
-    }
+    $table_list_array = $wpdb->get_results( 'SHOW TABLES FROM '.DB_NAME, ARRAY_A );
 
     
     // Tablo var mı?
@@ -109,7 +105,8 @@ function Ahmeti_Wp_Timeline_Head()
 function Ahmeti_Wp_Timeline_Admin()
 {
     /* Admin Menü */
-    add_menu_page( 'Ahmeti Wp Timeline', 'Timeline', '5', 'ahmeti-wp-timeline/index.php', 'Ahmeti_Wp_Timeline_Index', plugins_url('ahmeti-wp-timeline/images/ahmeti-wp-timeline-icon.png'), 8 );
+    add_action('admin_enqueue_scripts', 'Ahmeti_Wp_Timeline_Admin_Head');
+    add_menu_page( 'Ahmeti Wp Timeline', 'Timeline', 'edit_pages', 'ahmeti-wp-timeline/index.php', 'Ahmeti_Wp_Timeline_Index', plugins_url('ahmeti-wp-timeline/images/ahmeti-wp-timeline-icon.png') , 6);
     //load_plugin_textdomain('ahmeti-wp-timeline', FALSE, dirname(plugin_basename(__FILE__)).'/languages/');
 }
 
@@ -157,6 +154,8 @@ function AhmetiWpTimelineGetYear($mysqlDateTime){
 
 function AhmetiWpTimelineShortCodeOutput( $atts ) {
     
+    global $wpdb;
+    
     /*
      * Aynı yıl içinde varsa bir kaç tane olay varsa yılın içine ekle...
      * 
@@ -173,8 +172,9 @@ function AhmetiWpTimelineShortCodeOutput( $atts ) {
 
     $AhmetiSay=true;
             
-    $sql_group=mysql_query('SELECT * FROM '.AHMETI_WP_TIMELINE_DB_PREFIX.'ahmeti_wp_timeline WHERE group_id="'.$group_id.'" AND type="event" ORDER BY timeline_bc ASC, timeline_date ASC ');
-    while($row_group=mysql_fetch_array($sql_group)){
+    $sql_group = $wpdb->get_results( 'SELECT * FROM '.AHMETI_WP_TIMELINE_DB_PREFIX.'ahmeti_wp_timeline WHERE group_id="'.$group_id.'" AND type="event" ORDER BY timeline_bc ASC, timeline_date ASC ', ARRAY_A );
+    
+    foreach($sql_group as $row_group){
 
         if ($row_group['timeline_bc'] < 0 ){
             $AhmetiYear=$row_group['timeline_bc'];

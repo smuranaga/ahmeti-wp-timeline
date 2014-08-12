@@ -9,7 +9,7 @@ License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 A nice plugin that allows you to make a timeline about anything.
-Herhangi bir konu hakkında güzel bir timeline (zaman çizelgesi) oluşarabileceğiniz bir eklenti.
+Herhangi bir konu hakkında bir timeline oluşarabilirsiniz.
 
 == Description ==
 
@@ -51,6 +51,9 @@ Yazdığınız olayların içine her türlü çoklu ortam (resim,video,mp3 vb.) 
  1. Butona tıkladıktan sonra açılan pencereye Grup Listesinden hangi timeline (zaman çizelgesi) göstermek isterseniz "Grup_ID" değerini girip "Ekle" butonuna basmanız yeterli olacaktır. 
 
 == Changelog ==
+
+= 3.0 =
+* Tüm sorgular $wpdb ye uyarlandı.
 
 = 2.1 =
 * Sadece yılı seçilebilmesi eklendi.

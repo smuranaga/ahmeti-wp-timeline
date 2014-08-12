@@ -2,7 +2,9 @@
 <?php
 $group_id=(int)$_GET['group_id'];
 
-$group_name=mysql_fetch_array(mysql_query('SELECT group_id,title FROM '.AHMETI_WP_TIMELINE_DB_PREFIX.'ahmeti_wp_timeline WHERE group_id="'.$group_id.'" AND type="group_name" '));
+global $wpdb;
+$group_name = $wpdb->get_row( 'SELECT group_id,title FROM '.AHMETI_WP_TIMELINE_DB_PREFIX.'ahmeti_wp_timeline WHERE group_id="'.$group_id.'" AND type="group_name" ', ARRAY_A );
+
 ?>
 
 <h2><?php echo _e('Edit Group','ahmeti-wp-timeline'); ?></h2>

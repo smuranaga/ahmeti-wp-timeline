@@ -2,21 +2,22 @@
 <?php
 if (!empty($_POST)){
 
-    $group_id=mysql_real_escape_string(trim(stripslashes($_POST['group_id'])));
-    $event_title=mysql_real_escape_string(trim(stripslashes($_POST['event_title'])));
     
-    $event_date_year=mysql_real_escape_string(trim(stripslashes($_POST['event_date_year'])));
-    $event_date_month=mysql_real_escape_string(trim(stripslashes($_POST['event_date_month'])));
-    $event_date_day=mysql_real_escape_string(trim(stripslashes($_POST['event_date_day'])));
+    $group_id=trim(stripslashes($_POST['group_id']));
+    $event_title=trim(stripslashes($_POST['event_title']));
+    
+    $event_date_year=trim(stripslashes($_POST['event_date_year']));
+    $event_date_month=trim(stripslashes($_POST['event_date_month']));
+    $event_date_day=trim(stripslashes($_POST['event_date_day']));
     
     if (empty($event_date_year)) {$event_date_year='0000';}
     if (empty($event_date_month)) {$event_date_month='00';}
     if (empty($event_date_day)) {$event_date_day='00';}
     
     $event_date=$event_date_year.'-'.$event_date_month.'-'.$event_date_day;
-    $event_time=mysql_real_escape_string(trim(stripslashes($_POST['event_time'])));  // 00:00:00
-    $event_bc=(int)mysql_real_escape_string(trim(stripslashes($_POST['event_bc'])));  // 10000
-    $event_content=mysql_real_escape_string(trim(stripslashes($_POST['event_content'])));
+    $event_time=trim(stripslashes($_POST['event_time']));  // 00:00:00
+    $event_bc=(int)trim(stripslashes($_POST['event_bc']));  // 10000
+    $event_content=trim(stripslashes($_POST['event_content']));
     
     
     /*
@@ -76,10 +77,29 @@ if (!empty($_POST)){
             $sql_datetime_colon='0000-00-00 00:00:00';
             $sql_bc_colon='-'.$event_bc;
         }
+
+        global $wpdb;
+        $sql=$wpdb->insert( 
+                AHMETI_WP_TIMELINE_DB_PREFIX.'ahmeti_wp_timeline', 
+                array( 
+                    'group_id' => $group_id, 
+                    'timeline_bc' => $sql_bc_colon,
+                    'timeline_date' => $sql_datetime_colon,
+                    'title' => $event_title,
+                    'event_content' => $event_content,
+                    'type' => 'event'
+                ), 
+                array( 
+                    '%d', 
+                    '%d',
+                    '%s',
+                    '%s',
+                    '%s',
+                    '%s'
+                ) 
+        );
+
         
-
-        $sql=mysql_query('insert into '.AHMETI_WP_TIMELINE_DB_PREFIX.'ahmeti_wp_timeline (group_id,timeline_bc,timeline_date,title,event_content,type) values ("'.$group_id.'","'.$sql_bc_colon.'","'.$sql_datetime_colon.'","'.$event_title.'","'.$event_content.'","event")');
-
         if ($sql){
             ?>
             <p class="ahmeti_ok"><?php echo _e('Event was successfully added.','ahmeti-wp-timeline'); ?></p>

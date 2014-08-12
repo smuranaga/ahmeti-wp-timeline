@@ -3,9 +3,9 @@
     Plugin Name: Ahmeti Wp Timeline
     Text Domain: ahmeti-wp-timeline
     Plugin URI: http://ahmeti.net/
-    Description: A nice plugin that allows you to make a timeline about anything. Herhangi bir konu hakkında güzel bir timeline (zaman çizelgesi) oluşarabileceğiniz bir eklenti.
+    Description: A nice plugin that allows you to make a timeline about anything. Herhangi bir konu hakkında bir timeline oluşarabilirsiniz.
     Author: Ahmet Imamoglu
-    Version: 2.1
+    Version: 3.0
     Author URI: http://ahmeti.net/
 */
 
@@ -57,16 +57,14 @@ if ( isset($_GET['activate']) && @$_GET['activate'] == 'true' )
 if (!is_admin()) {
     // Wp User Head
     
-    add_action('wp_enqueue_scripts', 'Ahmeti_Wp_Timeline_Head');
+    //add_action('wp_enqueue_scripts', 'Ahmeti_Wp_Timeline_Head');
     
     add_shortcode( 'ahmetiwptimeline', 'AhmetiWpTimelineShortCodeOutput' );
     
 }else{
-    /* Wp Admin Head */
-    add_action('admin_enqueue_scripts', 'Ahmeti_Wp_Timeline_Admin_Head');
-    
+
     // Admin Panel - Yonetim Paneli Olustur
-    add_action('admin_menu', 'Ahmeti_Wp_Timeline_Admin');    
+    add_action('admin_menu', 'Ahmeti_Wp_Timeline_Admin');
     
     // Add Editor Button Short Code
     new AhmetiWpTimelineAddEditorButton();
@@ -74,11 +72,6 @@ if (!is_admin()) {
 
 
 function Ahmeti_Wp_Timeline_Index(){   //ahmeti_index
-    
-    
-    
-
-    
     
     require_once 'header.php';
 

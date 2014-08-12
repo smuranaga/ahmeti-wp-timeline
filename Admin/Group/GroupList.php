@@ -2,12 +2,13 @@
 <h2><?php echo _e('Timeline Group List','ahmeti-wp-timeline'); ?></h2>
 
 <?php
+global $wpdb;
 
 /* Sayfalama İçin */
 $page=@$_GET['is_page'];
 (int)$page_limit=get_option('AhmetiWpTimelinePageLimit');
 
-$group_say=mysql_fetch_assoc(mysql_query('SELECT COUNT(group_id) FROM '.AHMETI_WP_TIMELINE_DB_PREFIX.'ahmeti_wp_timeline WHERE type="group_name"'));
+$group_say = $wpdb->get_row( 'SELECT COUNT(group_id) as GroupSay FROM '.AHMETI_WP_TIMELINE_DB_PREFIX.'ahmeti_wp_timeline WHERE type="group_name"', OBJECT );
 
 if(empty($page) || !is_numeric($page)){
     $baslangic=1;
@@ -16,10 +17,12 @@ if(empty($page) || !is_numeric($page)){
     $baslangic=$page;
 }
 
-$toplam_sayfa=(int)$group_say['COUNT(group_id)'];
+$toplam_sayfa=(int)$group_say->GroupSay;
 $baslangic=($baslangic-1)*$page_limit;
 
-$group_list=mysql_query('SELECT group_id,title FROM '.AHMETI_WP_TIMELINE_DB_PREFIX.'ahmeti_wp_timeline WHERE type="group_name" ORDER BY group_id DESC LIMIT '.$baslangic.','.$page_limit);
+$group_list = $wpdb->get_results( 'SELECT group_id,title FROM '.AHMETI_WP_TIMELINE_DB_PREFIX.'ahmeti_wp_timeline WHERE type="group_name" ORDER BY group_id DESC LIMIT '.$baslangic.','.$page_limit, ARRAY_A );
+
+//var_dump($group_list);
 
 if($toplam_sayfa > 0){
     ?>
@@ -31,7 +34,7 @@ if($toplam_sayfa > 0){
             <td style="padding: 5px;border: 1px solid #ddd;width: 80px;font-weight: bold"><?php echo _e('Delete','ahmeti-wp-timeline'); ?></td>
         </tr>
         <?php
-        while ($group_name=mysql_fetch_assoc($group_list)){
+        foreach($group_list as $group_name){
         ?>
         <tr>
             <td style="padding: 5px;border: 1px solid #ddd;"><?php echo $group_name['group_id']; ?></td>

@@ -2,7 +2,7 @@
 <?php
 if (!empty($_GET)){
 
-    (int)$id=mysql_real_escape_string(trim(stripslashes($_GET['group_id'])));
+    (int)$id=trim(stripslashes($_GET['group_id']));
 
     if( empty($id) ){
     ?>
@@ -10,7 +10,8 @@ if (!empty($_GET)){
     <?php
     }else{
 
-        $sql=mysql_query('DELETE FROM '.AHMETI_WP_TIMELINE_DB_PREFIX.'ahmeti_wp_timeline WHERE group_id="'.$id.'"');
+        global $wpdb;
+        $sql=$wpdb->delete( AHMETI_WP_TIMELINE_DB_PREFIX.'ahmeti_wp_timeline', array( 'group_id' => $id ), array( '%d' ) );
 
         if ($sql){
             ?>

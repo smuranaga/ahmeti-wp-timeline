@@ -1,9 +1,9 @@
 <?php if(!defined('AHMETI_WP_TIMELINE_KONTROL')){ echo 'Bu dosyaya erşiminiz engellendi.'; exit(); } ?>
 <?php
+global $wpdb;
 $event_id=(int)$_GET['event_id'];
 
-$event=mysql_fetch_array(mysql_query('SELECT * FROM '.AHMETI_WP_TIMELINE_DB_PREFIX.'ahmeti_wp_timeline WHERE event_id='.$event_id.' AND type="event" '));
-
+$event = $wpdb->get_row( 'SELECT * FROM '.AHMETI_WP_TIMELINE_DB_PREFIX.'ahmeti_wp_timeline WHERE event_id='.$event_id.' AND type="event"', ARRAY_A );
 
 $exp_date=explode(' ',$event['timeline_date']);
 
@@ -69,8 +69,8 @@ wp_enqueue_style( 'AhmetiWpTimelineJqueryUiCss' );
         <select name="group_id">
             <option><?php echo _e('Select Group...','ahmeti-wp-timeline'); ?></option>
             <?php
-                $group_list=mysql_query('SELECT group_id,title FROM '.AHMETI_WP_TIMELINE_DB_PREFIX.'ahmeti_wp_timeline WHERE type="group_name" ORDER BY title ASC');
-                while($group_row=mysql_fetch_array($group_list)){
+                $group_list = $wpdb->get_results( 'SELECT group_id,title FROM '.AHMETI_WP_TIMELINE_DB_PREFIX.'ahmeti_wp_timeline WHERE type="group_name" ORDER BY title ASC', ARRAY_A );
+                foreach ($group_list as $group_row) {
                     ?>
                     <option value="<?php echo $group_row['group_id']; ?>" <?php if($event['group_id']==$group_row['group_id']){ echo 'selected="selected"'; } ?>><?php echo $group_row['title']; ?></option>
                     <?php

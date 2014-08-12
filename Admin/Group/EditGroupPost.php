@@ -2,8 +2,8 @@
 <?php
 if (!empty($_POST)){
 
-    $id=mysql_real_escape_string(trim(stripslashes($_POST['group_id'])));
-    $title=mysql_real_escape_string(trim(stripslashes($_POST['group_name'])));
+    $id=(int)$_POST['group_id'];
+    $title=trim(stripslashes($_POST['group_name']));
 
     if( empty($title) || empty($id) ){
         ?>
@@ -11,7 +11,19 @@ if (!empty($_POST)){
         <?php
     }else{
 
-        $sql=mysql_query('UPDATE '.AHMETI_WP_TIMELINE_DB_PREFIX.'ahmeti_wp_timeline SET title="'.$title.'" WHERE group_id="'.$id.'" AND type="group_name" ');
+        global $wpdb;
+        
+        $sql=$wpdb->update( 
+                AHMETI_WP_TIMELINE_DB_PREFIX.'ahmeti_wp_timeline', 
+                array( 
+                    'title' => $title	// string
+                ), 
+                array( 'group_id' => $id ), 
+                array( 
+                    '%s'
+                ), 
+                array( '%d' )
+        );
 
         if ($sql){
             ?>

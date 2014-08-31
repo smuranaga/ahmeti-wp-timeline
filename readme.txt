@@ -59,6 +59,7 @@ Yazdığınız olayların içine her türlü çoklu ortam (resim,video,mp3 vb.) 
 * Added Settings page.
 * Added Default Sort, Start State and Admin Page Limit features
 * Added customizable timeline features
+* Added filter in Event List for Gorups
 
 = 3.0 =
 * Tüm sorgular $wpdb ye uyarlandı.

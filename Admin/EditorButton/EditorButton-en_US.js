@@ -1,8 +1,6 @@
 // closure to avoid namespace collision
 (function(){
     
-
-    
 	// creates the plugin
 	tinymce.create('tinymce.plugins.mygallery', {
 		// creates control instances based on the control's id.
@@ -46,6 +44,14 @@
 				<!--<small>specify the number of columns.</small></td>-->\
 			</tr>\
 			<tr>\
+				<td>Sort: <select id="mygallery-sort" name="sort"><option value="ASC">ASC</option><option value="DESC">DESC</option></select><br />\
+				<!--<small>specify the number of columns.</small></td>-->\
+			</tr>\
+			<tr>\
+				<td>State: <select id="mygallery-state" name="state"><option value="close">Collapse All</option><option value="open">Expand All</option></select><br />\
+				<!--<small>specify the number of columns.</small></td>-->\
+			</tr>\
+			<tr>\
 				<td>\
                                     <p class="submit">\
                                             <input type="button" id="mygallery-submit" class="button-primary" value="Add Timeline" name="submit" />\
@@ -64,7 +70,9 @@
 			// again, this is not the most elegant way to do this
 			// but well, this gets the job done nonetheless
 			var options = { 
-				'groupid'    : ''
+				'groupid'    : '',
+                                'sort'    : '',
+                                'state'    : ''
 
 				};
 			var shortcode = '[ahmetiwptimeline';

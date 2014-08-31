@@ -4,9 +4,12 @@
 <?php
 global $wpdb;
 
+/* OPTIONS*/
+$ahmetiWpTimelineOpt=json_decode(get_option('AhmetiWpTimelineOptions'));
+
 /* Sayfalama İçin */
 $page=@$_GET['is_page'];
-(int)$page_limit=get_option('AhmetiWpTimelinePageLimit');
+(int)$page_limit=$ahmetiWpTimelineOpt->PageLimit;
 
 $group_say = $wpdb->get_row( 'SELECT COUNT(group_id) as GroupSay FROM '.AHMETI_WP_TIMELINE_DB_PREFIX.'ahmeti_wp_timeline WHERE type="group_name"', OBJECT );
 

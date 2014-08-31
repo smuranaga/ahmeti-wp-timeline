@@ -36,14 +36,11 @@ define('AHMETI_WP_TIMELINE_DB_PREFIX',$wpdb->prefix);
 
 require_once 'AhmetiWpTimelineFunction.php';
 
-
-/*
- *  OPTION LIST
- * 
- *  get_option('AhmetiWpTimelinePageLimit')  // Sayfa listeleme limiti
- * 
- */
-
+//  OPTION LIST
+// $ahmetiWpTimelineOpt->DefaultSort = ASC
+// $ahmetiWpTimelineOpt->StartState = open
+// $ahmetiWpTimelineOpt->PageLimit = 20
+ 
 
 if ( isset($_GET['activate']) && @$_GET['activate'] == 'true' )
 {
@@ -56,9 +53,7 @@ if ( isset($_GET['activate']) && @$_GET['activate'] == 'true' )
 
 if (!is_admin()) {
     // Wp User Head
-    
     add_action('wp_enqueue_scripts', 'Ahmeti_Wp_Timeline_Head');
-    
     add_shortcode( 'ahmetiwptimeline', 'AhmetiWpTimelineShortCodeOutput' );
     
 }else{
@@ -115,8 +110,16 @@ function Ahmeti_Wp_Timeline_Index(){   //ahmeti_index
         
     }elseif (@$_GET['islem']=='DeleteEventPost'){
         require_once 'Admin/Event/DeleteEventPost.php';
+    
         
-
+        
+    /* Settings Action*/
+    }elseif (@$_GET['islem']=='EditSettingsForm'){
+        require_once 'Admin/Settings/EditSettingsForm.php';
+    }elseif (@$_GET['islem']=='EditSettingsPost'){
+        require_once 'Admin/Settings/EditSettingsPost.php';
+        
+        
     /* Anasyafa */
     }else{
         require_once 'Admin/Group/GroupList.php';

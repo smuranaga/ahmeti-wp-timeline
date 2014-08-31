@@ -46,6 +46,14 @@
 				<!--<small>specify the number of columns.</small></td>-->\
 			</tr>\
 			<tr>\
+				<td>Sıralama: <select id="mygallery-sort" name="sort"><option value="ASC">A-Z</option><option value="DESC">Z-A</option></select><br />\
+				<!--<small>specify the number of columns.</small></td>-->\
+			</tr>\
+			<tr>\
+				<td>Durum: <select id="mygallery-state" name="state"><option value="close">Tek Tek Açılsın</option><option value="open">Hepsi Açık Olsun</option></select><br />\
+				<!--<small>specify the number of columns.</small></td>-->\
+			</tr>\
+			<tr>\
 				<td>\
                                     <p class="submit">\
                                             <input type="button" id="mygallery-submit" class="button-primary" value="Timeline (Zaman Çizelgesi) Ekle" name="submit" />\
@@ -64,8 +72,9 @@
 			// again, this is not the most elegant way to do this
 			// but well, this gets the job done nonetheless
 			var options = { 
-				'groupid'    : ''
-
+				'groupid'    : '',
+                                'sort'    : '',
+                                'state'    : ''
 				};
 			var shortcode = '[ahmetiwptimeline';
 			

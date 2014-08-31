@@ -12,12 +12,28 @@
                             name: 'textboxName',
                             label: 'Grup ID',
                             value: ''
+                        },
+                        {
+                            type: 'listbox',
+                            name: 'sort',
+                            label: 'Sort',
+                            'values': [
+                                    {text: 'ASC', value: 'ASC'},
+                                    {text: 'DESC', value: 'DESC'}
+                            ]
+                        },
+                        {
+                            type: 'listbox',
+                            name: 'state',
+                            label: 'State',
+                            'values': [
+                                    {text: 'Collapse All', value: 'close'},
+                                    {text: 'Expand All', value: 'open'}
+                            ]
                         }
-
-
                     ],
                     onsubmit: function(e) {
-                        editor.insertContent('[ahmetiwptimeline groupid="' + e.data.textboxName + '"]');
+                        editor.insertContent('[ahmetiwptimeline groupid="' + e.data.textboxName + '" sort="'+e.data.sort+'" state="'+e.data.state+'"]');
                     }
                 });
             }

@@ -25,4 +25,9 @@ jQuery(document).ready(function() {
             jQuery(".ahmetiDateDay").val("");
     });
     
+    
+    jQuery('#GorupIDFilter').change(function(){
+        window.location = AhmetiWpTimelineJsData.pluginAdminUrl+'&islem=EventList&group_id='+jQuery('#GorupIDFilter').val();
+    });
+
 });

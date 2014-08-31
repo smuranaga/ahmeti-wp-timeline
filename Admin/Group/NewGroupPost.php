@@ -17,7 +17,7 @@ if (!empty($_POST)){
         
         $last_group_id = $wpdb->get_row( 'SELECT group_id FROM '.AHMETI_WP_TIMELINE_DB_PREFIX.'ahmeti_wp_timeline ORDER BY group_id DESC LIMIT 0,1', OBJECT );
         
-        $group_id=(int)$last_group_id->group_id + 1;
+        $group_id=@(int)$last_group_id->group_id + 1;
         
         $sql=$wpdb->query($wpdb->prepare( 
                 "

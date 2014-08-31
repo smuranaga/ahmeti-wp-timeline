@@ -3,12 +3,24 @@
 <?php
 global $wpdb;
 
+/* OPTIONS*/
+$ahmetiWpTimelineOpt=json_decode(get_option('AhmetiWpTimelineOptions'));
+
 /* Sayfalama İçin */
 $page=@$_GET['is_page'];
-(int)$page_limit=get_option('AhmetiWpTimelinePageLimit');
+(int)$page_limit=$ahmetiWpTimelineOpt->PageLimit;
 
+/* FILTER */
 
-$eventSay = $wpdb->get_row( 'SELECT COUNT(event_id) as EventSay FROM '.AHMETI_WP_TIMELINE_DB_PREFIX.'ahmeti_wp_timeline WHERE type="event"', OBJECT );
+$filterGroupID=(int)@$_GET['group_id'];
+
+if ($filterGroupID > 0){
+    $addWhere=' AND group_id='.$filterGroupID;
+}else{
+    $addWhere='';
+}
+
+$eventSay = $wpdb->get_row( 'SELECT COUNT(event_id) as EventSay FROM '.AHMETI_WP_TIMELINE_DB_PREFIX.'ahmeti_wp_timeline WHERE type="event"'.$addWhere, OBJECT );
 
 if(empty($page) || !is_numeric($page)){
     $baslangic=1;
@@ -28,11 +40,27 @@ foreach($group_list as $group){
 $toplam_sayfa=(int)$eventSay->EventSay;
 $baslangic=($baslangic-1)*$page_limit;
 
-$event_list = $wpdb->get_results( 'SELECT event_id,group_id,title,timeline_bc,timeline_date FROM '.AHMETI_WP_TIMELINE_DB_PREFIX.'ahmeti_wp_timeline WHERE type="event" ORDER BY event_id DESC LIMIT '.$baslangic.','.$page_limit, ARRAY_A );
+$event_list = $wpdb->get_results( 'SELECT event_id,group_id,title,timeline_bc,timeline_date FROM '.AHMETI_WP_TIMELINE_DB_PREFIX.'ahmeti_wp_timeline WHERE type="event" '.$addWhere.' ORDER BY event_id DESC LIMIT '.$baslangic.','.$page_limit, ARRAY_A );
 
 if($toplam_sayfa > 0){
     ?>
+    <p>Group Filter: 
+        <select id="GorupIDFilter" name="group_id">
+            <option><?php echo _e('No Filter ','ahmeti-wp-timeline'); ?></option>
+            <?php
+                $group_list = $wpdb->get_results( 'SELECT group_id,title FROM '.AHMETI_WP_TIMELINE_DB_PREFIX.'ahmeti_wp_timeline WHERE type="group_name" ORDER BY title ASC', ARRAY_A );
+                
+                foreach ($group_list as $group_row) {
+                    ?>
+                    <option value="<?php echo $group_row['group_id']; ?>" <?php if ( $group_row['group_id']==$filterGroupID ){ echo 'selected="selected"'; }; ?>><?php echo $group_row['title']; ?></option>
+                    <?php
+                }
+            ?>
+        </select>
+    </p>
+
     <table style="width: 700px" class="ahmetiwptablestd">
+        
         <tr>
             <td style="padding: 5px;border: 1px solid #ddd;width: 20px;font-weight: bold"><?php echo _e('Event ID','ahmeti-wp-timeline'); ?></td>
             <td style="padding: 5px;border: 1px solid #ddd;width: 100px;font-weight: bold"><?php echo _e('Group Name','ahmeti-wp-timeline'); ?></td>
@@ -74,7 +102,7 @@ if($toplam_sayfa > 0){
     <?php            
 
         
-        AhmetiWpTimelineSayfala(AHMETI_WP_TIMELINE_ADMIN_URL,$toplam_sayfa,$page,$page_limit,'&islem=EventList');
+        AhmetiWpTimelineSayfala(AHMETI_WP_TIMELINE_ADMIN_URL,$toplam_sayfa,$page,$page_limit,'&islem=EventList&group_id='.$filterGroupID);
 
 }else{
     // Söz yok ise uyarı mesajı ver.
